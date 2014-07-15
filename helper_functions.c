@@ -403,6 +403,7 @@ void Print_Information_Processor(bool* nehalem, bool* sandy_bridge, bool* ivy_br
     //0x2, 0x5 - i3, i5, i7 mobile processors, 32nm
     //0x2, 0xA - i7, 32nm
     //0x3, 0xA - i7, 22nm
+    //0x3, 0xE - i7, 22nm (2nd gen)
     //http://ark.intel.com/SSPECQDF.aspx
     //http://software.intel.com/en-us/articles/intel-processor-identification-with-cpuid-model-and-family-numbers/
     printf("i7z DEBUG: msr = Model Specific Register\n");
@@ -476,6 +477,13 @@ void Print_Information_Processor(bool* nehalem, bool* sandy_bridge, bool* ivy_br
 		*nehalem = false;
   	    	*sandy_bridge = false;
 		*ivy_bridge = true;
+                *haswell = false;
+                break;
+            case 0xE:
+                printf ("i7z DEBUG: Detected an i7 - 22nm (ivy bridge) 2nd gen \n");
+                *nehalem = false;
+                *sandy_bridge = false;
+                *ivy_bridge = true;
                 *haswell = false;
                 break;
             case 0xC:
